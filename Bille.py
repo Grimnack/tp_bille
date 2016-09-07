@@ -14,31 +14,21 @@ class Bille(object):
 
     def update(self,futurX,futurY):
         if self.state.bougera :
-            self.env.grille[self.state.x][self.state.y] = None
-            self.env.grille[futurX][futurY] = self
+            self.env.grille[self.state.y][self.state.x] = None
+            self.env.grille[futurY][futurX] = self
             self.state.x = futurX
             self.state.y = futurY
-
-    def demiTour(self) :
-        """
-        C'est pas beau à voir mais c'est ça
-        """
-        if self.state.direction == 'N' :
-            self.state.direction = 'S'
-        elif self.state.direction == 'S':
-            self.state.direction = 'N'
-        elif self.state.direction == 'O':
-            self.state.direction = 'E'
-        elif self.state.direction == 'E':
-            self.state.direction = 'O'
-        elif self.state.direction == 'NO':
-            self.state.direction = 'SE'
-        elif self.state.direction == 'NE':
-            self.state.direction = 'SO'
-        elif self.state.direction == 'SO':
-            self.state.direction = 'NE'
-        elif self.state.direction == 'SE':
-            self.state.direction = 'NO'
+    
+    def collision(self,bille) :
+        '''
+        En cas de collision avec une autre bille les deux
+        s'échangent leur direction. 
+        '''
+        self.state.bougera = False
+        bille.state.bougera = False
+        direction_tmp = self.state.direction
+        self.state.direction = bille.state.direction
+        self.bille.direction = direction_tmp 
 
     def nextPos(self) :
         """
@@ -70,12 +60,12 @@ class Bille(object):
             soit c'est occupé : elle inverse sa direction et n'avancera pas à l'update
         """
         futurX,futurY = self.nextPos()
-        if self.env.grille[futurX][futurY] == None :
+        if self.env.grille[futurY][futurX] == None :
             #signifie donc que la voie est libre !
             self.state.bougera = True
         else :
             #du coup occupé
             self.state.bougera = False
-            self.demiTour()
+            self.collision()
         self.update(futurX,futurY)
 
