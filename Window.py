@@ -32,6 +32,16 @@ class Window(object):
         for colonne in range(self.gridSizeX):
             self.can.create_line(colonne * self.caseX, 0, colonne * self.caseX, self.canvasSizeY, fill ='green')  
     
+    def grille(self) :
+        '''
+        dessine notre magnifique grille
+        '''
+        for ligne in range(self.gridSizeY):
+            self.can.create_line(0, ligne * self.caseY, self.canvasSizeX, ligne * self.caseY, fill ='blue')  
+
+        for colonne in range(self.gridSizeX):
+            self.can.create_line(colonne * self.caseX, 0, colonne * self.caseX, self.canvasSizeY, fill ='green')  
+    
     def cercle(self,x, y, r, coul ='black',tag='tamere'):
         '''
         tracé d'un cercle de centre (x,y) et de rayon r
