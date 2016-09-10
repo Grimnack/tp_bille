@@ -53,7 +53,7 @@ class Bille(object):
                 futurY = len(self.env) - 2
                 self.state.direction[0] = - self.state.direction[0]
             if futurX == -1 :
-                futurX = 1
+                futurX = 1  
                 self.state.direction[1] = - self.state.direction[1]
             if futurX == len(self.env[0]) :
                 futurX = len(self.env[0]) - 2
