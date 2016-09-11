@@ -62,9 +62,6 @@ class SMA(object):
         #1. Nettoie l'écran        
         self.fenetre.can.delete("ball")
         self.fenetre.can.delete("text")
-        
-        if self.grid:
-            self.fenetre.grille()
 
         #2. Les billes décident de leur nouvelles positions. L'ordre de décision est séquentiel (toujours la même balle en premier) ou aléatoire
         if self.scheduling in ("random","rand","aleatoire","alea","aléatoire","shuffle"):
@@ -85,7 +82,7 @@ class SMA(object):
             self.fenetre.can.after(self.delay,self.theloop)
 
 
-SMA(gridSizeX=10,gridSizeY=10,canvasSizeX=1200,canvasSizeY=800,refresh=5,scheduling="random",nbTicks=0,trace=False,grid=True,seed="LUL",delay=10,nbParticles=10,torique=False)
+SMA(gridSizeX=10,gridSizeY=10,canvasSizeX=1200,canvasSizeY=800,refresh=1,scheduling="random",nbTicks=0,trace=False,grid=True,seed="LUL",delay=10,nbParticles=10,torique=False)
 
 
 
