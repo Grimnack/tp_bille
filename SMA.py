@@ -10,7 +10,12 @@ class SMA(object):
     """docstring for SMA
     Il n'y a pas d'implementation en python mais on lui donne le même comportement qu'un observable
     """
-    def __init__(self,gridSizeX,gridSizeY,canvasSizeX,canvasSizeY,delay,scheduling,nbTicks,trace,seed,refresh,nbParticles,torique):
+    def __init__(self,gridSizeX,gridSizeY,canvasSizeX,canvasSizeY,delay,scheduling,grid,nbTicks,trace,seed,refresh,nbParticles,torique):
+
+        if ( (gridSizeX * gridSizeY) < nbParticles ):
+            print("Schrödinger particles ? Not enough space for all the particles.\nTry a smaller number.")
+            return
+
         super(SMA, self).__init__()
         self.env = env.Environnement(gridSizeX,gridSizeY,torique=torique)
         self.delay = delay
@@ -19,6 +24,7 @@ class SMA(object):
         self.nbActualTicks = 1
         self.trace = trace
         self.refresh = refresh
+        self.grid = True
         self.lesBilles = []
         lesDirections = [(0,-1),(0,1),(1,-1),(1,1),(1,-1),(1,1),(-1,-1),(-1,1)]
         self.colors = ['red','firebrick', 'magenta2','green','yellow','magenta','blue','black', 'chocolate']
@@ -47,9 +53,11 @@ class SMA(object):
     def theloop(self):
         #1. Nettoie l'écran        
         self.fenetre.can.delete("all")
-        self.fenetre.grille()
+        
+        if self.grid:
+            self.fenetre.grille()
 
-        #2. Les billes décident de leur nouvelles positions
+        #2. Les billes décident de leur nouvelles positions. L'ordre de décision est séquentiel (toujours la même balle en premier) ou aléatoire
         if self.scheduling in ("random","rand","aleatoire","alea","aléatoire","shuffle"):
             random.shuffle(self.lesBilles)
 
@@ -57,7 +65,8 @@ class SMA(object):
             bille.decide()
             self.fenetre.place_bille(bille,bille.indice)
 
-        print("Fin du tour n°"+str(self.nbActualTicks))
+        if self.trace:
+            print("Fin du tour n°"+str(self.nbActualTicks))
 
         #Fin du programme ou pas
         # 0 = infini
@@ -67,8 +76,7 @@ class SMA(object):
             self.fenetre.can.after(self.refresh,self.theloop)
 
 
-
-simulation = SMA(gridSizeX=100,gridSizeY=100,canvasSizeX=1200,canvasSizeY=900,delay="LUL",scheduling="random",nbTicks=0,trace="LUL",seed="LUL",refresh=1,nbParticles=1000,torique=False)
+SMA(gridSizeX=10,gridSizeY=10,canvasSizeX=1200,canvasSizeY=800,delay="LUL",scheduling="random",nbTicks=0,trace=True,grid=True,seed="LUL",refresh=1000,nbParticles=10,torique=False)
 
 
 

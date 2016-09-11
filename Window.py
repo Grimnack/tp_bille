@@ -37,12 +37,12 @@ class Window(object):
         for colonne in range(self.gridSizeX):
             self.can.create_line(colonne * self.caseX, 0, colonne * self.caseX, self.canvasSizeY, fill ='green')  
     
-    def cercle(self,x, y, r, coul ='black',tag='ball'):
+    def cercle(self,x, y, r, coul ='black'):
         '''
         tracé d'un cercle de centre (x,y) et de rayon r
         Fonction reprise sur http://python.developpez.com/cours/TutoSwinnen/?page=Chapitre8
         '''
-        self.can.create_oval(x-r, y-r, x+r, y+r, outline=coul, fill=coul, tags=tag)
+        self.can.create_oval(x-r, y-r, x+r, y+r, outline='black', fill=coul)
         
         
     def place_bille(self,bille,indice) :
