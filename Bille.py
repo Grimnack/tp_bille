@@ -28,7 +28,7 @@ class Bille(object):
         bille.state.bougera = False
         direction_tmp = self.state.direction
         self.state.direction = bille.state.direction
-        self.bille.direction = direction_tmp 
+        bille.state.direction = direction_tmp 
 
 
     def nextPos(self) :
@@ -38,26 +38,33 @@ class Bille(object):
         (futurX,futurY) = (self.state.x + self.state.direction[0],self.state.y + self.state.direction[1])
         if self.env.torique :
             if futurY == -1 :
-                futurY = len(self.env)-1
-            if futurY == len(self.env) :
+                futurY = len(self.env.grille)-1
+            if futurY == len(self.env.grille) :
                 futurY = 0
             if futurX == -1 :
-                futurX = len(self.env[0]) -1
-            if futurX == len(self.env[0]) :
+                futurX = len(self.env.grille[0]) -1
+            if futurX == len(self.env.grille[0]) :
                 futurX = 0
         else :
-            if futurY == -1 :
-                futurY = 1
-                self.state.direction[0] = - self.state.direction[0]
-            if futurY == len(self.env) :
-                futurY = len(self.env) - 2
-                self.state.direction[0] = - self.state.direction[0]
+            # Temporary(?) workaround since
+            # TypeError: 'tuple' object does not support item assignment
+            # Hence, self.state.direction[1] = 0 - self.state.direction[1] won't be executed
+            list_direction = list(self.state.direction)
             if futurX == -1 :
-                futurX = 1  
-                self.state.direction[1] = - self.state.direction[1]
-            if futurX == len(self.env[0]) :
-                futurX = len(self.env[0]) - 2
-                self.state.direction[1] = - self.state.direction[1]
+                futurX = 1
+                list_direction[0] = - list_direction[0]
+            if futurX == len(self.env.grille[0]) :
+                futurX = len(self.env.grille[0]) - 2
+                list_direction[0] = - list_direction[0]
+            if futurY == -1 :
+                futurY = 1  
+                list_direction[1] = - list_direction[1]
+            if futurY == len(self.env.grille) :
+                futurY = len(self.env.grille) - 2
+                list_direction[1] = - list_direction[1]
+            self.state.direction = tuple(list_direction)
+
+        return (futurX,futurY)
         
     def decide(self) :
         """
@@ -72,6 +79,6 @@ class Bille(object):
         else :
             #du coup occupé
             self.state.bougera = False
-            self.collision()
+            self.collision(self.env.grille[futurY][futurX])
         self.update(futurX,futurY)
 

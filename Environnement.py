@@ -1,5 +1,6 @@
 import random
 import Bille as b
+import Window as w
 
 class Environnement(object):
     """docstring for Environnement"""
@@ -9,7 +10,7 @@ class Environnement(object):
         self.torique = torique
         self.lesCouples = None
 
-    def genereCouplesXY() :
+    def genereCouplesXY(self) :
         '''
         ajoute a self la liste des couples X Y possible par rapport aux dimensions de la grille
         '''
@@ -20,7 +21,7 @@ class Environnement(object):
         random.shuffle(lesCouples)
         self.lesCouples = lesCouples
 
-    def getFreeXYAlea() :
+    def getFreeXYAlea(self) :
         '''
         donne une coordonnée libre aléatoire
         '''
@@ -28,5 +29,5 @@ class Environnement(object):
             self.genereCouplesXY()
         return self.lesCouples.pop()
 
-    def ajouteBille(bille):
+    def ajouteBille(self,bille):
         self.grille[bille.state.y][bille.state.x] = bille 
