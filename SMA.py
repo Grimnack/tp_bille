@@ -44,7 +44,9 @@ class SMA(object):
             self.env.ajouteBille(bille)
             self.lesBilles.append(bille)
 
-        print("Placement aléatoire des billes (tour 0)")
+        if self.trace:
+            print("Placement aléatoire des billes (tour 0)")
+
         self.affiche()
 
     def affiche(self):
@@ -52,11 +54,14 @@ class SMA(object):
         self.fenetre.can.mainloop()
 
     def theloop(self):
+
         if((self.nbActualTicks % self.refresh) > 0):
-            return
+            self.nbActualTicks = self.nbActualTicks + 1
+            self.fenetre.can.after(self.delay,self.theloop)
 
         #1. Nettoie l'écran        
-        self.fenetre.can.delete("all")
+        self.fenetre.can.delete("ball")
+        self.fenetre.can.delete("text")
         
         if self.grid:
             self.fenetre.grille()
@@ -80,7 +85,7 @@ class SMA(object):
             self.fenetre.can.after(self.delay,self.theloop)
 
 
-SMA(gridSizeX=10,gridSizeY=10,canvasSizeX=1200,canvasSizeY=800,refresh=5,scheduling="random",nbTicks=0,trace=True,grid=True,seed="LUL",delay=10,nbParticles=10,torique=False)
+SMA(gridSizeX=10,gridSizeY=10,canvasSizeX=1200,canvasSizeY=800,refresh=5,scheduling="random",nbTicks=0,trace=False,grid=True,seed="LUL",delay=10,nbParticles=10,torique=False)
 
 
 

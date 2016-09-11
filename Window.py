@@ -42,9 +42,9 @@ class Window(object):
         tracé d'un cercle de centre (x,y) et de rayon r
         Fonction reprise sur http://python.developpez.com/cours/TutoSwinnen/?page=Chapitre8
         '''
-        self.can.create_oval(x-r, y-r, x+r, y+r, outline='black', fill=coul)
+        self.can.create_oval(x-r, y-r, x+r, y+r, outline='black', fill=coul, tag='ball')
         
         
     def place_bille(self,bille,indice) :
         self.cercle(bille.state.x*self.caseX + self.caseX/2, bille.state.y * self.caseY + self.caseY / 2,min(self.caseX,self.caseY)/2 ,coul=bille.color)
-        self.can.create_text(bille.state.x*self.caseX + self.caseX/2,bille.state.y * self.caseY + self.caseY / 2,text=str(indice))
+        self.can.create_text(bille.state.x*self.caseX + self.caseX/2,bille.state.y * self.caseY + self.caseY / 2,text=str(indice),tag='text')
