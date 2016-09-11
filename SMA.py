@@ -31,7 +31,8 @@ class SMA(object):
         indiceColor = 0
         random.seed(seed)
         self.fenetre = w.Window(gridSizeX=gridSizeX,gridSizeY=gridSizeY,canvasSizeX=canvasSizeX,canvasSizeY=canvasSizeY)
-        self.fenetre.grille()
+        if self.grid:
+            self.fenetre.grille()
         for i in range(nbParticles) :
             (x,y) = self.env.getFreeXYAlea()
             color = self.colors[indiceColor]
