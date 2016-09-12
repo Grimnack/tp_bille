@@ -10,7 +10,6 @@ class SMA(object):
     """docstring for SMA
     Il n'y a pas d'implementation en python mais on lui donne le même comportement qu'un observable
     """
-    def __init__(self,gridSizeX,gridSizeY,canvasSizeX,canvasSizeY,delay,scheduling="random",grid,nbTicks=0,trace,seed=None,refresh,nbParticles,torique=False):
 
         if ( (gridSizeX * gridSizeY) < nbParticles ):
             print("Pas assez d'espace pour places les "+str(nbParticles)+" particules.\nEssayez un plus petit nombre ("+str(gridSizeX * gridSizeY)+" ou moins).")
