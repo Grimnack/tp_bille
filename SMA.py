@@ -47,9 +47,9 @@ class SMA(object):
         if self.trace:
             print("Placement aléatoire des billes (tour 0)")
 
-        self.affiche()
+        self.run()
 
-    def affiche(self):
+    def run(self):
         self.fenetre.can.after(self.delay,self.theloop)
         self.fenetre.can.mainloop()
 
