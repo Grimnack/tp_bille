@@ -21,7 +21,7 @@ class Window(object):
             self.caseX,self.caseY = boxSize
 
         self.tk = Tk()
-        self.tk.title('KKona')
+        self.tk.title('SImulation de particules')
 
         self.can = Canvas(self.tk, width =self.canvasSizeX, height =self.canvasSizeY, bg ='ivory')
         self.can.pack(side=TOP)
