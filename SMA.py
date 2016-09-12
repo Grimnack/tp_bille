@@ -10,6 +10,7 @@ class SMA(object):
     """docstring for SMA
     Il n'y a pas d'implementation en python mais on lui donne le même comportement qu'un observable
     """
+    def __init__(self,gridSizeX,gridSizeY,canvasSizeX,canvasSizeY,delay,scheduling,grid,nbTicks,trace,seed,refresh,nbParticles,torique):
 
         if ( (gridSizeX * gridSizeY) < nbParticles ):
             print("Pas assez d'espace pour places les "+str(nbParticles)+" particules.\nEssayez un plus petit nombre ("+str(gridSizeX * gridSizeY)+" ou moins).")
@@ -62,6 +63,12 @@ class SMA(object):
 
         for bille in self.lesBilles:
             bille.decide()
+
+        """
+        Further code for a chaos mode
+        for i in range(len(self.lesBilles)):
+            self.lesBilles[random.randint(0, len(self.lesBilles) - 1)].decide()
+        """
 
         # 2. Mise à jour de l'affichage tous les refresh ticks. Si refresh = 1, l'affichage est mis à jour à chaque fin de tick.
         if(self.nbActualTicks % self.refresh) == 0 :     
