@@ -24,7 +24,7 @@ class SMA(object):
         self.nbActualTicks = 1
         self.trace = trace
         self.refresh = refresh
-        self.grid = True
+        self.grid = grid
         self.lesBilles = []
         lesDirections = [(0,-1),(0,1),(1,-1),(1,1),(1,-1),(1,1),(-1,-1),(-1,1)]
         self.colors = ['red','firebrick', 'magenta2','green','yellow','magenta','blue','black', 'chocolate']
@@ -55,13 +55,8 @@ class SMA(object):
 
     def theloop(self):
 
-        if((self.nbActualTicks % self.refresh) > 0):
-            self.nbActualTicks = self.nbActualTicks + 1
-            self.fenetre.can.after(self.delay,self.theloop)
+        self.nbActualTicks = self.nbActualTicks + 1
 
-        #1. Nettoie l'écran        
-        self.fenetre.can.delete("ball")
-        self.fenetre.can.delete("text")
 
         #2. Les billes décident de leur nouvelles positions. L'ordre de décision est séquentiel (toujours la même balle en premier) ou aléatoire
         if self.scheduling in ("random","rand","aleatoire","alea","aléatoire","shuffle","die","dice"):
@@ -69,7 +64,14 @@ class SMA(object):
 
         for bille in self.lesBilles:
             bille.decide()
-            self.fenetre.place_bille(bille,bille.indice)
+
+        if(self.nbActualTicks % self.refresh) == 0 :
+            #1. Nettoie l'écran        
+            self.fenetre.can.delete("ball")
+            self.fenetre.can.delete("text")
+            #2. dessine l'écran
+            for bille in self.lesBilles :
+                self.fenetre.place_bille(bille,bille.indice)
 
         if self.trace:
             print("Fin du tour n°"+str(self.nbActualTicks))
@@ -77,12 +79,12 @@ class SMA(object):
         #Fin du programme ou pas
         # 0 = infini
         # Voir si on a atteint le nombre de ticks demandés par l'utilisateur
-        if((self.nbTicks == 0) or (self.nbActualTicks < self.nbTicks)):
-            self.nbActualTicks = self.nbActualTicks + 1
+        
+        if((self.nbTicks==0) or (self.nbActualTicks < self.nbTicks)):
             self.fenetre.can.after(self.delay,self.theloop)
 
 
-SMA(gridSizeX=100,gridSizeY=100,canvasSizeX=1200,canvasSizeY=800,refresh=1,scheduling="nope",nbTicks=0,trace=False,grid=True,seed="LUL",delay=50,nbParticles=1000,torique=True)
+SMA(gridSizeX=100,gridSizeY=100,canvasSizeX=1200,canvasSizeY=800,refresh=1,scheduling="nope",nbTicks=0,trace=False,grid=True,seed="LUL",delay=1,nbParticles=1000,torique=True)
 
 
 
