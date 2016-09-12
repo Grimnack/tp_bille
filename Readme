@@ -1,3 +1,31 @@
-TP Billes 
-UE : SCI
-Par Matthieu Caron et Alexandre Moevi de MOCAD.
+TP SCI n°1 - Réalisation d'un système multi-agents (SMA) minimal ; Simulation de déplacement de particules dans un espace fini
+
+AUTEURS : CARON Matthieu - MOEVI Alexandre (MOCAD)
+
+UTILISATION
+
+Le programme utilise Python 3 et la bibliothèque tkinter ("sudo apt-get install python3-tk"). On peut vérifier l'installation de tkinter avec la commande "python3 -m tkinter".
+
+Une fois lancé, le programme ouvre une nouvelle fenêtre et affiche la simulation des particules. Pour faciliter le suivi, les particules sont numérotées.
+
+
+COMMANDES ET OPTIONS
+
+
+
+COMMENTAIRES SUR L'ARCHITECTURE 
+
+L'architecture est très basique et ne comporte que cinq classes :
+- SMA qui effectue le tour de parole avec la méthode run
+- Window qui s'occupe de l'interface graphique (taille de la fenêtre, affichage de la grille et des particules)
+- Environnement qui est l'espace torique ou non où se trouve les particules
+- Bille qui correspond à la classe Agent
+- State qui stocke l'état d'une particule (coordonnées, direction de la particule)
+
+La particule (instance de la classe Bille) décide grâce à la méthode decide. En fonction de sa direction, elle calcule sa prochaine destination. Trois cas sont possibles :
+- la prochaine case est libre, alors elle s'y rend
+- la prochaine destination est un mur (espace non torique), alors elle rebondit et change sa direction
+- la prochaine destination est une particule, alors elle échange sa direction avec l'autre particule
+
+
+PERFORMANCE
