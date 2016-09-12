@@ -46,9 +46,6 @@ class Bille(object):
             if futurX == len(self.env.grille[0]) :
                 futurX = 0
         else :
-            # Temporary(?) workaround since
-            # TypeError: 'tuple' object does not support item assignment
-            # Hence, self.state.direction[1] = 0 - self.state.direction[1] won't be executed
             list_direction = list(self.state.direction)
             if futurX == -1 :
                 futurX = 1
