@@ -11,7 +11,18 @@ Une fois lancé, le programme ouvre une nouvelle fenêtre et affiche la simulati
 
 COMMANDES ET OPTIONS
 
-
+La simulation offre plusieurs paramètres :
+- gridSizeX et gridSizeY, nombre de cases en largeur et hauteur
+- canvasSizeX et canvasSizeY, taille de la fenêtre en pixels
+- refresh pour la mise à jour de l'affichage tous les refresh ticks. Si refresh = 1, l'affichage est mis à jour à chaque fin de tick.
+- scheduling, soit aléatoire (les particules décident l'une après l'autre dans un ordre aléatoire)
+- nbTicks, nombre de ticks. Si 0, le nombre de ticks est inifini
+- trace (True ou False) 
+- grid, affichage de la grille (True ou False) 
+- seed, graîne pour le générateur de nombres pseudo-aléatoires
+- delay, temps entre deux tours
+- nbParticles, nombre de particules,
+- torique, True pour avoir un espace torique
 
 COMMENTAIRES SUR L'ARCHITECTURE 
 
