@@ -39,4 +39,9 @@ La particule (instance de la classe Bille) décide grâce à la méthode decide.
 - la prochaine destination est une particule, alors elle échange sa direction avec l'autre particule
 
 
-PERFORMANCE
+TESTS DE PERFORMANCE
+
+Le fichier scriptCourbe.py teste sur une simulation de plus en plus dense (de 0 à 999 particules par défaut) le temps de 10 ticks (le nombre peut être modifié).
+Le programme a une sortie qui peut être redirigée vers un fichier, ici "courbe.txt". Chaque ligne du fichier est sous la forme "<Nombre de particules> <Temps d'éxécution de 10 ticks>".
+
+Le script "courbe.plt" permet d'afficher la courbe de résultats avec gnuplot (écrire "load 'courbe.plt'" dans gnuplot). On constate que le relation entre le nombre d'agents et la vitesse d'éxécution est seulement linéaire.
