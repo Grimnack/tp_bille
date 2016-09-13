@@ -4,7 +4,10 @@ import Bille as b
 import State as s
 import Window as w
 import random
+import time
 from tkinter import *
+
+
 
 class SMA(object):
     """docstring for SMA
@@ -39,7 +42,7 @@ class SMA(object):
             #indiceColor = (indiceColor + 1)%(len(self.colors))
             direction = random.choice(lesDirections)
             state = s.State(x,y,direction)
-            bille = b.Bille(color, i, state, self.env)
+            bille = b.Bille(color, i, state, self.env,trace=trace)
             self.fenetre.place_bille(bille,i)
             self.env.ajouteBille(bille)
             self.lesBilles.append(bille)
@@ -86,9 +89,11 @@ class SMA(object):
         
         if((self.nbTicks==0) or (self.nbActualTicks < self.nbTicks)):
             self.fenetre.can.after(self.delay,self.theloop)
+        else :
+            self.fenetre.tk.destroy()
 
 
-SMA(gridSizeX=50,gridSizeY=50,canvasSizeX=1000,canvasSizeY=800,refresh=1,scheduling="",nbTicks=0,trace=False,grid=True,seed=None,delay=100,nbParticles=5000000,torique=False)
+
 
 
 

@@ -5,12 +5,13 @@ class Bille(object):
     Une bille possède une couleur 
 
     """
-    def __init__(self, color, indice, state, env):
+    def __init__(self, color, indice, state, env,trace=False):
         super(Bille, self).__init__()
         self.color = color
         self.indice = indice
         self.state = state
         self.env = env
+        self.trace = trace
 
     def update(self,futurX,futurY):
         if self.state.bougera :
@@ -24,6 +25,8 @@ class Bille(object):
         En cas de collision avec une autre bille les deux
         s'échangent leur direction. 
         '''
+        if self.trace :
+            print("Colision de la bille "+str(self.indice)+" avec la bille "+str(bille.indice)+" en ("+str(bille.state.x)+","+str(bille.state.y)+")")
         self.state.bougera = False
         bille.state.bougera = False
         direction_tmp = self.state.direction
