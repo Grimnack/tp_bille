@@ -47,8 +47,8 @@ class SMA(object):
             self.env.ajouteBille(bille)
             self.lesBilles.append(bille)
 
-        if self.trace:
-            print("Placement aléatoire des billes (tour 0)")
+        #if self.trace:
+        #    print("Placement aléatoire des billes (tour 0)")
 
         self.run()
 
@@ -80,8 +80,8 @@ class SMA(object):
             for bille in self.lesBilles :
                 self.fenetre.place_bille(bille,bille.indice)
 
-        if self.trace:
-            print("Fin du tour n°"+str(self.nbActualTicks))
+        #if self.trace:
+        #    print("Fin du tour n°"+str(self.nbActualTicks))
 
         # 3. Terminaison
         # 0 = infini
